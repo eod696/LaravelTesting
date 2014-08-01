@@ -1,0 +1,16 @@
+body {
+	font: 12px arial;
+}
+div.container {
+	width: 940px;
+	margin: 0px auto;
+}
+table {
+	width: 100%;
+}
+table thead tr th {
+	text-align: left;
+}
+table tbody tr:nth-child(even) {
+	background-color: #ccc;
+}
