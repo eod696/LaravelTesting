@@ -27,4 +27,17 @@ Route::get('users', function()
 	));
 });
 
-Route::get('users/{id}', 'UsersController@showProfile');
+Route::get('users/{id}', array('as' => 'getUser', 'uses' => 'UsersController@showProfile'));
+
+Route::get('users/{id}/edit', 'UsersController@editUser');
+Route::post('users/{id}/edit', ['as' => 'updateUser', function($id)
+{
+	$user = User::find($id);
+	
+	if(Input::has('name')) $user->name = Input::get('name');
+	if(Input::has('email')) $user->email = Input::get('email');
+	
+	$user->save();
+	
+	return Redirect::route('getUser', array('id' => $id));
+}]);

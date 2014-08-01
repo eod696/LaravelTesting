@@ -20,5 +20,8 @@
 			<td><b>Updated at:</b></td>
 			<td>{{ $user->updated_at }}</td>
 		</tr>
+		<tr>
+			<td colspan="2"><a href="{{ Request::url(); }}/edit">Edit this user</a></td>
+		</tr>
 	</table>
 @stop
