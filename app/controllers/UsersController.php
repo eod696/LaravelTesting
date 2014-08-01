@@ -12,13 +12,5 @@ class UsersController extends BaseController {
 		
 		return View::make('edituser', array('user' => $user));
 	}
-	
-	public function editUserPost() {
-		$user = User::find($id);
-		
-		// TODO: Update user with POST data
-		
-		return 'You edited ' . Input::post('name');
-	}
 }
 ?>

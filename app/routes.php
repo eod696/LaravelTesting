@@ -30,7 +30,7 @@ Route::get('users', function()
 Route::get('users/{id}', array('as' => 'getUser', 'uses' => 'UsersController@showProfile'));
 
 Route::get('users/{id}/edit', 'UsersController@editUser');
-Route::post('users/{id}/edit', ['as' => 'updateUser', function($id)
+Route::post('users/{id}/edit', array('as' => 'updateUser', function($id)
 {
 	$user = User::find($id);
 	
@@ -40,4 +40,4 @@ Route::post('users/{id}/edit', ['as' => 'updateUser', function($id)
 	$user->save();
 	
 	return Redirect::route('getUser', array('id' => $id));
-}]);
+}));
