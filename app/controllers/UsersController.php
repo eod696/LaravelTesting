@@ -4,23 +4,22 @@ class UsersController extends BaseController {
 	// GET: /users
 	public function userIndex() {
 		$users = User::all();
-		$url = URL::to('users');
 		
-		return View::make('users')->with(['users' => $users, 'url' => $url ]);
+		return View::make('users', ['users' => $users ]);
 	}
 
 	// GET: /users/{id}
 	public function showProfile($id) {
 		$user = User::find($id);
 		
-		return View::make('userprofile', array('user' => $user));
+		return View::make('userprofile', ['user' => $user]);
 	}
 	
 	// GET: /users/{id}/edit
 	public function editUser($id) {
 		$user = User::find($id);
 		
-		return View::make('edituser', array('user' => $user));
+		return View::make('edituser', ['user' => $user]);
 	}
 	
 	// POST: /users/{id}/edit
@@ -28,10 +27,10 @@ class UsersController extends BaseController {
 		$user = User::find($id);
 	
 		// Validation rules
-		$rules = array(
+		$rules = [
 			'name' => 'required|between:3,100|alpha_dash',
 			'email' => 'required|between:3,64|email'
-		);
+		];
 		// Create validator
 		$validator = Validator::make(Input::all(), $rules);
 		

@@ -30,15 +30,18 @@ table.editUser tbody tr td.errorText label {
 	font-style: italic;
 	display: block;
 }
-table.editUser tbody tr td input[type="submit"]{
+table.editUser tbody tr td input[type="submit"],
+button.editUserBtn {
 	background-color: #49CC00;
 	color: #fff;
 	border: 0px;
 	padding: 4px;
 	margin-top: 15px;
 	font-weight: bold;
+	cursor: pointer;
 }
-table.editUser tbody tr td input[type="submit"]:active {
+table.editUser tbody tr td input[type="submit"]:active,
+button.editUserBtn:active {
 	background-color: #3CA302;
 	border: #49CC00;
 	vertical-align: top;

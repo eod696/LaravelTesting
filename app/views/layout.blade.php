@@ -1,12 +1,14 @@
 <html>
 	<head>
-		<title>Laravel - Quickstart</title>
+		<title>
+			@yield('title', 'Dan\'s Laravel Quickstart')
+		</title>
 		<link rel="stylesheet" href="/css/styles.css" />
 	</head>
     <body>
 		<div class="container">
-			<h1>Laravel Quickstart</h1>
-
+			<h1>Dan's Laravel Quickstart</h1>
+			
 			@yield('content')
 		</div>
 	</body>

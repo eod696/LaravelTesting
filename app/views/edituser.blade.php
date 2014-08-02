@@ -1,7 +1,11 @@
 @extends('layout')
 
+@section('title')
+	Edit User {{ $user->name }}
+@stop
+
 @section('content')
-	<a href="/users"><< Back</a>
+	<a href="{{ route('getUserIndex') }}/{{ $user->id }}"><< Back</a>
 	<h1>Edit User</h1>
 	{{ Form::model($user, array('route' => array('updateUser', $user->id))) }}
 		<table class="editUser">

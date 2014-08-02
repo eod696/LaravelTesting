@@ -1,9 +1,13 @@
 @extends('layout')
 
+@section('title')
+	View User {{ $user->name }}
+@stop
+
 @section('content')
-	<a href="/users"><< Back</a>
+	<a href="{{ route('getUserIndex') }}"><< Back</a>
 	<h2>{{ $user->name }}</h2>
-	<table>
+	<table class="users">
 		<tr>
 			<td><b>ID:</b></td>
 			<td>{{ $user->id }}</td>
@@ -21,7 +25,11 @@
 			<td>{{ $user->updated_at }}</td>
 		</tr>
 		<tr>
-			<td colspan="2"><a href="{{ Request::url(); }}/edit">Edit this user</a></td>
+			<td colspan="2">
+				<button class="editUserBtn" onclick="window.location.replace('{{ Request::url(); }}/edit')">
+					Edit this user
+				</button>
+			</td>
 		</tr>
 	</table>
 @stop
