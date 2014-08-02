@@ -4,8 +4,36 @@
 	<a href="/users"><< Back</a>
 	<h1>Edit User</h1>
 	{{ Form::model($user, array('route' => array('updateUser', $user->id))) }}
-	{{ Form::text('name'); }}
-	{{ Form::text('email'); }}
-	{{ Form::submit('submit form'); }}
-	
+		<table class="editUser">
+			<tbody>
+				<tr>
+					<td class="formLabel"><label for="name">Name:</label></td>
+					<td>{{ Form::text('name'); }}</td>
+					<td class="errorText">
+						@if($errors->has('name'))	
+							@foreach($errors->get('name') as $error)
+								<label>{{ $error }}</label>
+							@endforeach
+						@endif
+					</td>
+				</tr>
+				<tr>
+					<td class="formLabel"><label for="email">Email:</label></td>
+					<td>{{ Form::text('email'); }}</td>
+					<td class="errorText">
+						@if($errors->has('email'))
+							@foreach($errors->get('email') as $error)
+								<label>{{ $error }}</label>
+							@endforeach
+						@endif
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						{{ Form::submit('Save Changes to User'); }}
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</form>
 @stop

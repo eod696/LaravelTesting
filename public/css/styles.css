@@ -5,12 +5,40 @@ div.container {
 	width: 940px;
 	margin: 0px auto;
 }
-table {
+table.users {
 	width: 100%;
 }
-table thead tr th {
+table.users thead tr th {
 	text-align: left;
 }
-table tbody tr:nth-child(even) {
+table.users tbody tr:nth-child(even) {
 	background-color: #ccc;
+}
+
+table.editUser tbody tr td.formLabel {
+	background-color: #dedede;
+	width: 145px;
+	padding-right: 5px;
+	text-align: right;
+}
+table.editUser tbody tr td label {
+	font: bold 14px arial;
+}
+table.editUser tbody tr td.errorText label {
+	color: #c00;
+	font-weight: normal;
+	font-style: italic;
+	display: block;
+}
+table.editUser tbody tr td input[type="submit"]{
+	background-color: #49CC00;
+	color: #fff;
+	border: 0px;
+	padding: 4px;
+	margin-top: 15px;
+	font-weight: bold;
+}
+table.editUser tbody tr td input[type="submit"]:active {
+	background-color: #3CA302;
+	border: #49CC00;
 }

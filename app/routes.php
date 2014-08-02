@@ -27,17 +27,31 @@ Route::get('users', function()
 	));
 });
 
-Route::get('users/{id}', array('as' => 'getUser', 'uses' => 'UsersController@showProfile'));
+Route::get('users/{id}', ['as' => 'getUser', 'uses' => 'UsersController@showProfile']);
 
-Route::get('users/{id}/edit', 'UsersController@editUser');
-Route::post('users/{id}/edit', array('as' => 'updateUser', function($id)
+Route::get('users/{id}/edit', ['as' => 'editUser', 'uses' => 'UsersController@editUser']);
+Route::post('users/{id}/edit', ['as' => 'updateUser', function($id)
 {
 	$user = User::find($id);
 	
-	if(Input::has('name')) $user->name = Input::get('name');
-	if(Input::has('email')) $user->email = Input::get('email');
+	// Server-side validation
+	$rules = array(
+		'name' => 'required|between:3,100|alpha_dash',
+		'email' => 'required|between:3,64|email'
+	);
+	$validator = Validator::make(Input::all(), $rules);
 	
-	$user->save();
-	
-	return Redirect::route('getUser', array('id' => $id));
-}));
+	if($validator->passes()){
+		// Validator passed, so update the user details
+		$user->name = Input::get('name');
+		$user->email = Input::get('email');
+		// Save changes to db
+		$user->save();
+		
+		return Redirect::route('getUser', ['id' => $id]);
+	}
+	else {
+		// Validator failed for some reason, display error
+		return Redirect::route('editUser', ['id' => $id])->withErrors($validator);
+	}
+}]);

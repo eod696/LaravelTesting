@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('content')
-    <table>
+    <table class="users">
 		<thead>
 			<tr>
 				<th>ID</th>
