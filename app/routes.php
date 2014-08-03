@@ -11,12 +11,12 @@
 |
 */
 
-Route::get('/', function()
-{
-	return View::make('hello');
-});
+Route::get('/', ['as' => 'index', 'uses' => 'HomeController@showWelcome']);
+
+Route::get('login', ['as' => 'loginForm', 'uses' => 'LoginController@loginForm']);
+Route::post('login', ['as' => 'loginPost', 'uses' => 'LoginController@loginPost']);
 
 Route::get('users', ['as' => 'getUserIndex', 'uses' => 'UsersController@userIndex']);
 Route::get('users/{id}', ['as' => 'getUser', 'uses' => 'UsersController@showProfile']);
-Route::get('users/{id}/edit', ['as' => 'editUser', 'uses' => 'UsersController@editUser']);
+Route::get('users/{id}/edit', ['before' => 'auth', 'as' => 'editUser', 'uses' => 'UsersController@editUser']);
 Route::post('users/{id}/edit', ['as' => 'updateUser', 'uses' => 'UsersController@editUserPost']);
