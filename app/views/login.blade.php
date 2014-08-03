@@ -5,10 +5,24 @@
 @stop
 
 @section('content')
-	<h3>Login</h3>
-	{{ Form::open(['route', 'loginPost']) }}
-		{{ Form::text('email', 'your@email.com') }}<br/>
-		{{ Form::password('password') }}<br/>
+	<h3>Login Form</h3>
+	{{ Form::open(['route' => 'loginPost', 'class' => 'loginForm']) }}
+		{{ Form::label('email', 'Email:') }}
+		{{ Form::text('email', 'your@email.com') }}
+		@if($errors->has('email'))
+			@foreach($errors->get('email') as $error)
+				<div class="errorText">{{ $error }}</div>
+			@endforeach
+		@endif
+		<br/>
+		{{ Form::label('password', 'Password:') }}
+		{{ Form::password('password') }}
+		@if($errors->has('password'))
+			@foreach($errors->get('password') as $error)
+				<div class="errorText">{{ $error }}</div>
+			@endforeach
+		@endif
+		<br/>
 		{{ Form::submit('Login') }}
 	{{ Form::close() }}
 @stop
