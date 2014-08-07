@@ -8,6 +8,7 @@ I'm building this as an exploration of Laravel.  My endpoint goal at this time i
 * Edit your own password (not other users passwords)
 * Public facing registration form which requires approval of an admin
 * Add new user form accessible only to admins
+
 After I make it this far, my goals and ideas for this project will have grown.  These seem like necessary components of any CMS though.  
 
 This project is built with:
