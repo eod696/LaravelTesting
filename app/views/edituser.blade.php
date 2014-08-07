@@ -5,7 +5,7 @@
 @stop
 
 @section('content')
-	<a href="{{ route('getUserIndex') }}/{{ $user->id }}"><< Back</a>
+	<a href="{{ URL::previous() }}"><< Back</a>
 	<h1>Edit User</h1>
 	{{ Form::model($user, ['route' => ['updateUser', $user->id]]) }}
 		<table class="editUser">
