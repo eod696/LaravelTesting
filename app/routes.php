@@ -11,6 +11,7 @@
 |
 */
 
+// Guests allowed
 Route::get('/', ['as' => 'index', 'uses' => 'HomeController@showWelcome']);
 
 Route::get('login', ['as' => 'loginForm', 'uses' => 'LoginController@loginForm']);
@@ -19,13 +20,13 @@ Route::get('logout', ['as' => 'logout', 'uses' => 'LoginController@logout']);
 
 Route::get('users', ['as' => 'getUserIndex', 'uses' => 'UsersController@userIndex']);
 Route::get('users/{id}', ['as' => 'getUser', 'uses' => 'UsersController@showProfile']);
-Route::get('users/{id}/edit', [
-	'before' => 'auth', 
-	'as' => 'editUser', 
-	'uses' => 'UsersController@editUser'
-]);
-Route::post('users/{id}/edit', [
-	'before' => 'auth', 
-	'as' => 'updateUser', 
-	'uses' => 'UsersController@editUserPost'
-]);
+
+// Auth required
+Route::group(['before' => 'auth'], function()
+{
+	Route::get('users/{id}/edit', ['as' => 'editUser', 'uses' => 'UsersController@editUser']);
+	Route::post('users/{id}/edit', ['as' => 'updateUser', 'uses' => 'UsersController@editUserPost']);
+	
+	Route::get('account', ['as' => 'editAccount', 'uses' => 'AccountController@editAccount']);
+	Route::post('account', ['as' => 'updateAccount', 'uses' => 'AccountController@editAccountPost']);
+});
