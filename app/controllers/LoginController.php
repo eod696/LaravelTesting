@@ -21,7 +21,12 @@ class LoginController extends BaseController {
 			
 			// Attempt authentication
 			if (Auth::attempt(['email' => $inEmail, 'password' => $inPswd])){
+				// Auth succeeded, redirect
 				return Redirect::intended('/users');
+			}
+			else {
+				// Auth failed, inform user
+				return Redirect::route('loginForm')->with('msg', 'Login failed.');
 			}
 		}
 		// There is a problem with the form or authentication failed
