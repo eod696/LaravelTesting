@@ -1,3 +1,4 @@
+/* Primary containers */
 body {
 	font: 12px arial;
 }
@@ -5,26 +6,75 @@ div.container {
 	width: 940px;
 	margin: 0px auto;
 }
-table.users {
+
+/* Global layout classes */
+a:link, a:visited, a:active {
+	text-decoration: none;
+	color: #00f;
+}
+a:hover {
+	text-decoration: underline;
+}
+a.editLink {
+	display: block;
+	margin: 15px 0px;
+	font-weight: bold;
+}
+.message {
+	color: #cc0000;
+	padding: 5px 0px;
+	font-style: italic;
+}
+.headCont {
+	min-height: 1em;
 	width: 100%;
+	margin: 15px 0px;
 }
-table.users thead tr th {
-	text-align: left;
+.headRight {
+	width: 48%;
+	float: right;
+	text-align: right;
 }
-table.users tbody tr:nth-child(even) {
-	background-color: #ccc;
+.headLeft {
+	width: 48%;
+	float: left;
+}
+ul.navbar {
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
+ul.navbar li {
+	display: inline-block;
+	padding: 0px 5px 0px 0px;
 }
 
-table.editUser tbody tr td.formLabel {
+/* Helper classes */
+.alignright {
+	float: right;
+}
+.alignleft {
+	float: left;
+}
+
+/* Admin editor tables */
+table.editTable {
+	width: 100%;
+}
+table.editTable tbody tr td.formLabel {
 	background-color: #dedede;
 	width: 145px;
 	padding-right: 5px;
 	text-align: right;
 }
-table.editUser tbody tr td label {
+table.editTable tbody tr td label {
 	font: bold 14px arial;
 }
-table.editUser tbody tr td.errorText label,
+table.editTable tbody tr td textarea {
+	width: 100%;
+	font: 12px arial;
+}
+table.editTable tbody tr td.errorText label,
 div.errorText {
 	color: #c00;
 	font-weight: normal;
@@ -47,6 +97,8 @@ input[type="submit"]:active, button:active {
 	padding-top: 5px;
 	padding-bottom: 3px;
 }
+
+/* Login */
 .loginForm label{
 	display: inline-block;
 	width: 73px;
@@ -55,11 +107,19 @@ input[type="submit"]:active, button:active {
 	padding: 3px;
 	color: #555;
 }
-.alignright {
-	float: right;
+
+/* User model list */
+table.users {
+	width: 100%;
 }
-.message {
-	color: #cc0000;
-	padding: 5px 0px;
-	font-style: italic;
+table.users thead tr th {
+	text-align: left;
+}
+table.users tbody tr:nth-child(even) {
+	background-color: #ccc;
+}
+
+/* Page model display */
+div.pageBody{
+	line-height: 1.5em;
 }

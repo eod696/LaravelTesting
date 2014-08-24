@@ -11,7 +11,7 @@
 		<div class="message">{{ Session::get('msg') }}</div>
 	@endif
 	{{ Form::model($user, ['route' => 'updateAccount']) }}
-		<table class="editUser">
+		<table class="editTable">
 			<tbody>
 				<tr>
 					<td class="formLabel"><label for="name">Name:</label></td>

@@ -11,22 +11,48 @@
 |
 */
 
-// Guests allowed
+/* ***********
+ * Public Routes
+ *************/
+// Main index
 Route::get('/', ['as' => 'index', 'uses' => 'HomeController@showWelcome']);
 
+// Login/logout
 Route::get('login', ['as' => 'loginForm', 'uses' => 'LoginController@loginForm']);
 Route::post('login', ['as' => 'loginPost', 'uses' => 'LoginController@loginPost']);
 Route::get('logout', ['as' => 'logout', 'uses' => 'LoginController@logout']);
 
+// View Users
 Route::get('users', ['as' => 'getUserIndex', 'uses' => 'UsersController@userIndex']);
 Route::get('users/{id}', ['as' => 'getUser', 'uses' => 'UsersController@showProfile']);
 
-// Auth required
+Route::get('wtf', function(){
+	return View::make('404');
+});
+
+/*************
+ * Auth required
+ *************/
 Route::group(['before' => 'auth'], function()
 {
-	Route::get('users/{id}/edit', ['as' => 'editUser', 'uses' => 'UsersController@editUser']);
-	Route::post('users/{id}/edit', ['as' => 'updateUser', 'uses' => 'UsersController@editUserPost']);
-	
+	// Edit Account
 	Route::get('account', ['as' => 'editAccount', 'uses' => 'AccountController@editAccount']);
 	Route::post('account', ['as' => 'updateAccount', 'uses' => 'AccountController@editAccountPost']);
+	
+	/*
+	 * Administration routes
+	 * ==============
+	 * Restrict these routes to a specific group
+	 */
+	// Edit Users
+	Route::get('admin/edit-user/{id}', ['as' => 'editUser', 'uses' => 'UsersController@editUser']);
+	Route::post('admin/edit-user/{id}', ['as' => 'updateUser', 'uses' => 'UsersController@editUserPost']);
+	
+	// Edit Page
+	Route::get('admin/edit-page/{id}', ['as' => 'editPage', 'uses' => 'ContentController@editPage']);
+	Route::post('admin/edit-page/{id}', ['as' => 'updatePage', 'uses' => 'ContentController@updatePage']);
 });
+
+// View Content
+// *IMPORTANT* Must be defined last to not overwrite base URL routes (i.e. /account and /users).
+Route::get('{slug}', ['as' => 'getPage', 'uses' => 'ContentController@getPage']);
