@@ -26,7 +26,7 @@
 		</tr>
 		<tr>
 			<td colspan="2">
-				<button class="editUserBtn" onclick="window.location.replace('{{ Request::url(); }}/edit')">
+				<button class="editUserBtn" onclick="window.location.replace('{{ route('editUser', ['id' => $user->id]) }}')">
 					Edit this user
 				</button>
 			</td>

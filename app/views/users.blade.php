@@ -14,8 +14,8 @@
 		<tbody>
 			@foreach($users as $user)
 			<tr>
-				<td><a href="{{ route('getUserIndex') }}/{{ $user->id }}">{{ $user->id }}</a></td>
-				<td><a href="{{ route('getUserIndex') }}/{{ $user->id }}">{{ $user->name }}</a></td>
+				<td><a href="{{ route('getUser', ['id' => $user->id]) }}">{{ $user->id }}</a></td>
+				<td><a href="{{ route('getUser', ['id' => $user->id]) }}">{{ $user->name }}</a></td>
 				<td>{{ $user->email }}</td>
 				<td>{{ $user->created_at }}</td>
 				<td>{{ $user->updated_at }}</td>
