@@ -26,10 +26,6 @@ Route::get('logout', ['as' => 'logout', 'uses' => 'LoginController@logout']);
 Route::get('users', ['as' => 'getUserIndex', 'uses' => 'UsersController@userIndex']);
 Route::get('users/{id}', ['as' => 'getUser', 'uses' => 'UsersController@showProfile']);
 
-Route::get('wtf', function(){
-	return View::make('404');
-});
-
 /*************
  * Auth required
  *************/
