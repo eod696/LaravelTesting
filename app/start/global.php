@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,6 +50,11 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 App::error(function(Exception $exception, $code)
 {
 	Log::error($exception);
+});
+App::error(function(ModelNotFoundException $e)
+{
+	if(View::exists('pagenotfound')) return View::make('pagenotfound');
+	else return "404 error, sorry - view does not exists for some reason.";
 });
 
 /*
